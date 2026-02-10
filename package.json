@@ -1,5 +1,5 @@
 {
-  "name": "@sfmap/sdk3-plugin",
+  "name": "sfmap-sdk3-plugin",
   "version": "0.1.0",
   "private": true,
   "description": "Rollup-based Mapbox GL JS plugin SDK monorepo",

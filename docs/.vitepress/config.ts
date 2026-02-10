@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
-  title: 'Mapbox Plugin SDK',
+  title: 'SFMap SDK3 Plugin',
   description: 'Rollup + TypeScript Mapbox GL JS plugin SDK',
   themeConfig: {
     nav: [

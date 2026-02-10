@@ -1,4 +1,4 @@
-# Mapbox GL JS Plugin SDK Monorepo
+# SFMap SDK3 Plugin Monorepo
 
 ## 项目结构
 

@@ -1,10 +1,10 @@
 {
-  "name": "@mapbox-plugin/heatmap",
+  "name": "sfmap-heatmap-plugin",
   "version": "0.1.0",
   "main": "dist/heatmap.umd.js",
   "module": "dist/heatmap.esm.js",
   "types": "dist/types/packages/heatmap/src/index.d.ts",
   "dependencies": {
-    "@mapbox-plugin/shared": "workspace:*"
+    "sfmap-shared-plugin": "workspace:*"
   }
 }

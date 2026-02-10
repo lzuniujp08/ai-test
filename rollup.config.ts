@@ -14,6 +14,15 @@ const inputEntries: Record<string, string> = {
   aoilayer: 'packages/aoilayer/src/index.ts',
 };
 
+const umdGlobals: Record<string, string> = {
+  sdk: 'SFMapSDK3Plugin',
+  shared: 'SFMapSharedPlugin',
+  admin: 'SFMapAdminPlugin',
+  service: 'SFMapServicePlugin',
+  heatmap: 'SFMapHeatmapPlugin',
+  aoilayer: 'SFMapAOILayerPlugin',
+};
+
 const basePlugins = [
   resolve({ extensions: ['.ts', '.js'] }),
   commonjs(),
@@ -36,7 +45,7 @@ const createBuild = (name: string, input: string) => [
     output: {
       file: path.resolve('dist', `${name}.umd.js`),
       format: 'umd',
-      name: `Mapbox${name[0].toUpperCase()}${name.slice(1)}SDK`,
+      name: umdGlobals[name],
       sourcemap: true,
     },
     plugins: basePlugins,
