@@ -1,24 +1,15 @@
-const tseslint = require('@typescript-eslint/eslint-plugin');
-const tsParser = require('@typescript-eslint/parser');
-
 module.exports = [
   {
     ignores: ['dist/**', 'docs/.vitepress/dist/**', 'node_modules/**'],
   },
   {
-    files: ['**/*.ts'],
+    files: ['**/*.js'],
     languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 2022,
-        sourceType: 'module',
-      },
-    },
-    plugins: {
-      '@typescript-eslint': tseslint,
+      ecmaVersion: 2022,
+      sourceType: 'module',
     },
     rules: {
-      ...tseslint.configs.recommended.rules,
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     },
   },
 ];

@@ -1,9 +1,9 @@
-import { HeatmapLayer } from '../packages/heatmap/src';
-import { initMap } from './map';
+import { HeatmapLayer } from '../packages/heatmap/src/index.js';
+import { initMap } from './map.js';
 
 const map = initMap('map');
 map.on('load', () => {
-  const layer = new HeatmapLayer(map as never, {
+  const layer = new HeatmapLayer(map, {
     sourceId: 'demo-heatmap',
     points: {
       type: 'FeatureCollection',

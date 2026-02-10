@@ -2,6 +2,5 @@
   "name": "sfmap-shared-plugin",
   "version": "0.1.0",
   "main": "dist/shared.umd.js",
-  "module": "dist/shared.esm.js",
-  "types": "dist/types/packages/shared/src/index.d.ts"
+  "module": "dist/shared.esm.js"
 }

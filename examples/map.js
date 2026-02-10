@@ -1,9 +1,9 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-export const initMap = (containerId: string) => {
+export const initMap = (containerId) => {
   mapboxgl.accessToken =
-    (window as typeof window & { MAPBOX_TOKEN?: string }).MAPBOX_TOKEN ||
+    window.MAPBOX_TOKEN ||
     'pk.eyJ1IjoiZGVtbyIsImEiOiJjbHp1M3gyeHAwMDF5Mmlxcm8xbjVxYzVjIn0.placeholder';
 
   return new mapboxgl.Map({

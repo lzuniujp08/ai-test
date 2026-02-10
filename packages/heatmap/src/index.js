@@ -1,18 +1,13 @@
-import { MapboxLike, createLayerId } from '@sdk/shared';
-
-export interface HeatmapOptions {
-  sourceId: string;
-  points: GeoJSON.FeatureCollection<GeoJSON.Point>;
-}
+import { createLayerId } from '../../shared/src/index.js';
 
 export class HeatmapLayer {
-  private readonly layerId: string;
-
-  constructor(private readonly map: MapboxLike, private readonly options: HeatmapOptions) {
+  constructor(map, options) {
+    this.map = map;
+    this.options = options;
     this.layerId = createLayerId('heatmap', options.sourceId);
   }
 
-  create(): string {
+  create() {
     this.map.addSource(this.options.sourceId, {
       type: 'geojson',
       data: this.options.points,
@@ -25,12 +20,12 @@ export class HeatmapLayer {
     return this.layerId;
   }
 
-  update(points: GeoJSON.FeatureCollection<GeoJSON.Point>): void {
-    const source = this.map.getSource(this.options.sourceId) as { setData?: (data: unknown) => void };
+  update(points) {
+    const source = this.map.getSource(this.options.sourceId);
     source?.setData?.(points);
   }
 
-  destroy(): void {
+  destroy() {
     if (this.map.getLayer(this.layerId)) {
       this.map.removeLayer(this.layerId);
     }

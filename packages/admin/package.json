@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "main": "dist/admin.umd.js",
   "module": "dist/admin.esm.js",
-  "types": "dist/types/packages/admin/src/index.d.ts",
   "dependencies": {
     "sfmap-shared-plugin": "workspace:*"
   }

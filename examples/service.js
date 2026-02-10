@@ -1,5 +1,5 @@
-import { fetchMapData } from '../packages/service/src';
-import { initMap } from './map';
+import { fetchMapData } from '../packages/service/src/index.js';
+import { initMap } from './map.js';
 
 initMap('map');
 

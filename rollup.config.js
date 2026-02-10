@@ -2,19 +2,18 @@ import path from 'node:path';
 import { defineConfig } from 'rollup';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import typescript from '@rollup/plugin-typescript';
-import { terser } from '@rollup/plugin-terser';
+import terser from '@rollup/plugin-terser';
 
-const inputEntries: Record<string, string> = {
-  sdk: 'src/index.ts',
-  shared: 'packages/shared/src/index.ts',
-  admin: 'packages/admin/src/index.ts',
-  service: 'packages/service/src/index.ts',
-  heatmap: 'packages/heatmap/src/index.ts',
-  aoilayer: 'packages/aoilayer/src/index.ts',
+const inputEntries = {
+  sdk: 'src/index.js',
+  shared: 'packages/shared/src/index.js',
+  admin: 'packages/admin/src/index.js',
+  service: 'packages/service/src/index.js',
+  heatmap: 'packages/heatmap/src/index.js',
+  aoilayer: 'packages/aoilayer/src/index.js',
 };
 
-const umdGlobals: Record<string, string> = {
+const umdGlobals = {
   sdk: 'SFMapSDK3Plugin',
   shared: 'SFMapSharedPlugin',
   admin: 'SFMapAdminPlugin',
@@ -23,14 +22,9 @@ const umdGlobals: Record<string, string> = {
   aoilayer: 'SFMapAOILayerPlugin',
 };
 
-const basePlugins = [
-  resolve({ extensions: ['.ts', '.js'] }),
-  commonjs(),
-  typescript({ tsconfig: './tsconfig.json', declaration: false }),
-  terser(),
-];
+const basePlugins = [resolve({ extensions: ['.js'] }), commonjs(), terser()];
 
-const createBuild = (name: string, input: string) => [
+const createBuild = (name, input) => [
   {
     input,
     output: {

@@ -1,20 +1,14 @@
-import { LngLat } from '@sdk/shared';
-
-export interface AOI {
-  id: string;
-  name: string;
-  polygon: LngLat[];
-}
-
 export class AOILayerManager {
-  private readonly aois = new Map<string, AOI>();
+  constructor() {
+    this.aois = new Map();
+  }
 
-  draw(aoi: AOI): AOI {
+  draw(aoi) {
     this.aois.set(aoi.id, aoi);
     return aoi;
   }
 
-  edit(id: string, patch: Partial<AOI>): AOI | undefined {
+  edit(id, patch) {
     const current = this.aois.get(id);
     if (!current) return undefined;
     const updated = { ...current, ...patch };
@@ -22,7 +16,7 @@ export class AOILayerManager {
     return updated;
   }
 
-  query(id: string): AOI | undefined {
+  query(id) {
     return this.aois.get(id);
   }
 }

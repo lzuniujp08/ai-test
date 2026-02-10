@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "main": "dist/aoilayer.umd.js",
   "module": "dist/aoilayer.esm.js",
-  "types": "dist/types/packages/aoilayer/src/index.d.ts",
   "dependencies": {
     "sfmap-shared-plugin": "workspace:*"
   }

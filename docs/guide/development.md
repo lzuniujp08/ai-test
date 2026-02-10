@@ -9,9 +9,9 @@ pnpm run dev
 
 ## 添加新模块
 
-1. 在 `packages/<new-module>` 创建 `package.json` 与 `src/index.ts`。
-2. 在 `rollup.config.ts` 增加独立构建 entry。
-3. 在 `src/index.ts` 聚合导出。
+1. 在 `packages/<new-module>` 创建 `package.json` 与 `src/index.js`。
+2. 在 `rollup.config.js` 增加独立构建 entry。
+3. 在 `src/index.js` 聚合导出。
 
 ## 测试与贡献
 

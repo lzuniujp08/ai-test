@@ -1,5 +1,5 @@
-import { AOILayerManager } from '../packages/aoilayer/src';
-import { initMap } from './map';
+import { AOILayerManager } from '../packages/aoilayer/src/index.js';
+import { initMap } from './map.js';
 
 initMap('map');
 
