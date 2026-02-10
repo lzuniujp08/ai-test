@@ -1,0 +1,10 @@
+{
+  "name": "@mapbox-plugin/admin",
+  "version": "0.1.0",
+  "main": "dist/admin.umd.js",
+  "module": "dist/admin.esm.js",
+  "types": "dist/types/packages/admin/src/index.d.ts",
+  "dependencies": {
+    "@mapbox-plugin/shared": "workspace:*"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "name": "@mapbox-plugin/sdk-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Rollup-based Mapbox GL JS plugin SDK monorepo",
+  "packageManager": "pnpm@9.12.0",
+  "main": "dist/sdk.umd.js",
+  "module": "dist/sdk.esm.js",
+  "unpkg": "dist/sdk.umd.js",
+  "types": "dist/types/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/src/index.d.ts",
+      "import": "./dist/sdk.esm.js",
+      "require": "./dist/sdk.umd.js"
+    },
+    "./admin": {
+      "types": "./dist/types/packages/admin/src/index.d.ts",
+      "import": "./dist/admin.esm.js",
+      "require": "./dist/admin.umd.js"
+    },
+    "./service": {
+      "types": "./dist/types/packages/service/src/index.d.ts",
+      "import": "./dist/service.esm.js",
+      "require": "./dist/service.umd.js"
+    },
+    "./heatmap": {
+      "types": "./dist/types/packages/heatmap/src/index.d.ts",
+      "import": "./dist/heatmap.esm.js",
+      "require": "./dist/heatmap.umd.js"
+    },
+    "./aoilayer": {
+      "types": "./dist/types/packages/aoilayer/src/index.d.ts",
+      "import": "./dist/aoilayer.esm.js",
+      "require": "./dist/aoilayer.umd.js"
+    },
+    "./shared": {
+      "types": "./dist/types/packages/shared/src/index.d.ts",
+      "import": "./dist/shared.esm.js",
+      "require": "./dist/shared.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite --config examples/vite.config.ts",
+    "build:lib": "rimraf dist && rollup -c && tsc -p tsconfig.build.json",
+    "build:docs": "vitepress build docs",
+    "test": "vitest run",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "release": "pnpm run lint && pnpm run test && pnpm run build:lib && pnpm changeset version && echo 'Ready to publish (simulation)'"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.9",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
+    "@typescript-eslint/parser": "^8.14.0",
+    "eslint": "^9.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.26.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vitepress": "^1.5.0",
+    "vitest": "^2.1.4",
+    "@types/geojson": "^7946.0.15"
+  },
+  "dependencies": {
+    "mapbox-gl": "^3.7.0"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "@mapbox-plugin/shared",
+  "version": "0.1.0",
+  "main": "dist/shared.umd.js",
+  "module": "dist/shared.esm.js",
+  "types": "dist/types/packages/shared/src/index.d.ts"
+}
