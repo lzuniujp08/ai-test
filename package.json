@@ -34,13 +34,14 @@
     }
   },
   "scripts": {
-    "dev": "vite --config examples/vite.config.js",
-    "build:lib": "rimraf dist && rollup -c",
+    "dev": "pnpm run prepare:modules && vite --config examples/vite.config.js",
+    "build:lib": "pnpm run prepare:modules && rimraf dist && rollup -c",
     "build:docs": "vitepress build docs",
-    "test": "vitest run",
+    "test": "pnpm run prepare:modules && vitest run",
     "lint": "eslint . --ext .js",
     "format": "prettier --write .",
-    "release": "pnpm run lint && pnpm run test && pnpm run build:lib && pnpm changeset version && echo 'Ready to publish (simulation)'"
+    "release": "pnpm run lint && pnpm run test && pnpm run build:lib && pnpm changeset version && echo 'Ready to publish (simulation)'",
+    "prepare:modules": "node scripts/generate-modules.js"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.9",

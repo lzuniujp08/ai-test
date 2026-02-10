@@ -1,25 +1,32 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { defineConfig } from 'rollup';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 
+const toPascalCase = (value) =>
+  value
+    .split(/[-_]/g)
+    .filter(Boolean)
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join('');
+
+const packageEntries = fs
+  .readdirSync('packages', { withFileTypes: true })
+  .filter((entry) => entry.isDirectory())
+  .map((entry) => entry.name)
+  .filter((name) => fs.existsSync(path.join('packages', name, 'src', 'index.js')))
+  .sort();
+
 const inputEntries = {
   sdk: 'src/index.js',
-  shared: 'packages/shared/src/index.js',
-  admin: 'packages/admin/src/index.js',
-  service: 'packages/service/src/index.js',
-  heatmap: 'packages/heatmap/src/index.js',
-  aoilayer: 'packages/aoilayer/src/index.js',
+  ...Object.fromEntries(packageEntries.map((name) => [name, `packages/${name}/src/index.js`])),
 };
 
 const umdGlobals = {
   sdk: 'SFMapSDK3Plugin',
-  shared: 'SFMapSharedPlugin',
-  admin: 'SFMapAdminPlugin',
-  service: 'SFMapServicePlugin',
-  heatmap: 'SFMapHeatmapPlugin',
-  aoilayer: 'SFMapAOILayerPlugin',
+  ...Object.fromEntries(packageEntries.map((name) => [name, `SFMap${toPascalCase(name)}Plugin`])),
 };
 
 const basePlugins = [resolve({ extensions: ['.js'] }), commonjs(), terser()];

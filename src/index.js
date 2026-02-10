@@ -1,21 +1,28 @@
-import { ensureMapInstance } from '../packages/shared/src/index.js';
-import { AdminToolkit } from '../packages/admin/src/index.js';
-import { fetchMapData } from '../packages/service/src/index.js';
-import { HeatmapLayer } from '../packages/heatmap/src/index.js';
-import { AOILayerManager } from '../packages/aoilayer/src/index.js';
+import { modules } from './auto-modules.js';
 
-export * from '../packages/shared/src/index.js';
-export * from '../packages/admin/src/index.js';
-export * from '../packages/service/src/index.js';
-export * from '../packages/heatmap/src/index.js';
-export * from '../packages/aoilayer/src/index.js';
+export * from './auto-modules.js';
 
 export const createSDK = (map) => {
-  ensureMapInstance(map);
-  return {
-    admin: new AdminToolkit({ map }),
-    service: { fetchMapData },
-    heatmap: HeatmapLayer,
-    aoilayer: new AOILayerManager(),
+  if (modules.shared?.ensureMapInstance) {
+    modules.shared.ensureMapInstance(map);
+  }
+
+  const sdk = {
+    modules,
   };
+
+  if (modules.admin?.AdminToolkit) {
+    sdk.admin = new modules.admin.AdminToolkit({ map });
+  }
+  if (modules.service?.fetchMapData) {
+    sdk.service = { fetchMapData: modules.service.fetchMapData };
+  }
+  if (modules.heatmap?.HeatmapLayer) {
+    sdk.heatmap = modules.heatmap.HeatmapLayer;
+  }
+  if (modules.aoilayer?.AOILayerManager) {
+    sdk.aoilayer = new modules.aoilayer.AOILayerManager();
+  }
+
+  return sdk;
 };
