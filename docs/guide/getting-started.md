@@ -3,24 +3,24 @@
 ## CDN 全量引入
 
 ```html
-<script src="https://unpkg.com/@mapbox-plugin/sdk-monorepo/dist/sdk.umd.js"></script>
+<script src="https://unpkg.com/@sfmap/sdk3-plugin/dist/sdk.umd.js"></script>
 ```
 
 ## npm 安装
 
 ```bash
-pnpm add @mapbox-plugin/sdk-monorepo
+pnpm add @sfmap/sdk3-plugin
 ```
 
 ## 全量引入
 
 ```ts
-import { createSDK } from '@mapbox-plugin/sdk-monorepo';
+import { createSDK } from '@sfmap/sdk3-plugin';
 ```
 
 ## 按需引入
 
 ```ts
-import { HeatmapLayer } from '@mapbox-plugin/sdk-monorepo/heatmap';
-import { AOILayerManager } from '@mapbox-plugin/sdk-monorepo/aoilayer';
+import { HeatmapLayer } from '@sfmap/sdk3-plugin/heatmap';
+import { AOILayerManager } from '@sfmap/sdk3-plugin/aoilayer';
 ```
