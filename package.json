@@ -35,8 +35,10 @@
   },
   "scripts": {
     "dev": "pnpm run prepare:modules && vite --config examples/vite.config.js",
+    "doc": "vitepress dev . --port 8080",
+    "build": "pnpm run prepare:modules && pnpm run build:lib && pnpm run build:docs",
     "build:lib": "pnpm run prepare:modules && rimraf dist && rollup -c",
-    "build:docs": "vitepress build docs",
+    "build:docs": "vitepress build .",
     "test": "pnpm run prepare:modules && vitest run",
     "lint": "eslint . --ext .js",
     "format": "prettier --write .",
@@ -57,6 +59,12 @@
     "vitest": "^2.1.4"
   },
   "dependencies": {
-    "mapbox-gl": "^3.7.0"
+    "@turf/bbox": "^6.5.0",
+    "@turf/turf": "^6.5.0",
+    "crypto-js": "^4.1.1",
+    "jsencrypt": "3.2.1",
+    "@terraformer/wkt": "^2.2.0",
+    "@mapbox/mapbox-gl-draw": "^1.4.3",
+    "proj4": "^2.20.2"
   }
 }

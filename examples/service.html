@@ -1,14 +1,47 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Service Example</title>
-    <link rel="stylesheet" href="/shared.css" />
-  </head>
-  <body>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>服务插件示例</title>
+  <link rel="stylesheet" href="/shared.css" />
+  <script src="./lib/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app" class="service-app">
+    <!-- 控制面板 -->
+    <div class="control-panel service" v-if="initialized">
+      <div class="panel-header">
+        <h1>服务插件</h1>
+        <p>ServicePlugin 功能演示</p>
+      </div>
+      <div class="panel-content">
+        <button class="btn" @click="testGeo">地理编码</button>
+        <button class="btn" @click="testRgeo">逆地理编码</button>
+        <button class="btn" @click="testRoute">路径规划</button>
+        <button class="btn" @click="testTip">POI搜索</button>
+        <button class="btn btn-danger" @click="clearAll">清除所有</button>
+      </div>
+    </div>
+
+    <!-- 搜索框 -->
+    <div class="search-box" v-if="initialized">
+      <input type="text" class="search-input" v-model="searchKeyword" @input="onSearchInput"
+        placeholder="输入地址或POI搜索..." />
+      <div class="poi-result-list" :class="{ show: showPoiResults && poiResults.length > 0 }">
+        <div v-for="poi in poiResults" :key="poi.uid" class="poi-item" @click="selectPoi(poi)">
+          <div class="poi-name">{{ poi.name }}</div>
+          <div class="poi-address">{{ poi.detail_addr || poi.adname.join('') || '未知地址' }}</div>
+        </div>
+      </div>
+    </div>
+
     <div id="map"></div>
-    <pre class="panel" id="output"></pre>
-    <script type="module" src="/service.js"></script>
-  </body>
+  </div>
+
+  <script type="module" src="/service.js"></script>
+</body>
+
 </html>

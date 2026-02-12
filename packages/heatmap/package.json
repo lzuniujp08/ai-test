@@ -4,6 +4,7 @@
   "main": "dist/heatmap.umd.js",
   "module": "dist/heatmap.esm.js",
   "dependencies": {
-    "sfmap-shared-plugin": "workspace:*"
+    "@turf/turf": "^6.5.0",
+    "crypto-js": "^4.1.1"
   }
 }

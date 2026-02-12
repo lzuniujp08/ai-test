@@ -1,10 +1,10 @@
-import uuid from "../../../src/utils/uuid";
-import { post, postData, getData } from "../../../src/utils/request";
+import uuid from "./utils/uuid";
+import { post, postData, getData } from "./utils/request";
 import * as turf from "@turf/turf";
-import TokenUtil from "../../../src/utils/token";
-import GeoEncrypt from "../../../src/utils/GeoEncrypt";
+import TokenUtil from "./utils/token";
+import GeoEncrypt from "./utils/GeoEncrypt";
 import { wktToGeoJSON, geojsonToWKT } from "@terraformer/wkt";
-import { mergePolygonsToMinArea } from "../../../src/utils/merge";
+import { mergePolygonsToMinArea } from "./utils/merge";
 
 const STYLE_TYPE_DICT = {
   normal: 1, // 普通样式
@@ -82,7 +82,7 @@ const AOI_LAYER_URL = {
 
 const geoEncrypt = new GeoEncrypt();
 
-export class AOILayerPlugin {
+class AOILayerPlugin {
   /**
    * @class AOILayerPlugin
    * @classdesc AOI栅格图层，实现AOI图层的展示和样式的设置，以及AOI的高亮展示
@@ -1763,4 +1763,11 @@ export class AOILayerPlugin {
       return this;
     }
   }
+}
+
+export default AOILayerPlugin;
+
+// 兼容非模块环境（script标签直接引入）
+if (typeof window !== 'undefined') {
+  window.AOILayerPlugin = AOILayerPlugin;
 }

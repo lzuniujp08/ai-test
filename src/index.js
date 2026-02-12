@@ -1,27 +1,27 @@
-import { modules } from './auto-modules.js';
+import { plugins } from './auto-modules.js';
 
 export * from './auto-modules.js';
 
 export const createSDK = (map) => {
-  if (modules.shared?.ensureMapInstance) {
-    modules.shared.ensureMapInstance(map);
+  if (plugins.shared?.ensureMapInstance) {
+    plugins.shared.ensureMapInstance(map);
   }
 
   const sdk = {
-    modules,
+    plugins,
   };
 
-  if (modules.admin?.AdminToolkit) {
-    sdk.admin = new modules.admin.AdminToolkit({ map });
+  if (plugins.admin?.AdminPlugin) {
+    sdk.admin = new plugins.admin.AdminPlugin({ map });
   }
-  if (modules.service?.fetchMapData) {
-    sdk.service = { fetchMapData: modules.service.fetchMapData };
+  if (plugins.service?.ServicePlugin) {
+    sdk.service = new plugins.service.ServicePlugin({ map });
   }
-  if (modules.heatmap?.HeatmapLayer) {
-    sdk.heatmap = modules.heatmap.HeatmapLayer;
+  if (plugins.heatmap?.HeatmapPlugin) {
+    sdk.heatmap = new plugins.heatmap.HeatmapPlugin({ map });
   }
-  if (modules.aoilayer?.AOILayerManager) {
-    sdk.aoilayer = new modules.aoilayer.AOILayerManager();
+  if (plugins.aoilayer?.AOILayerPlugin) {
+    sdk.aoilayer = new plugins.aoilayer.AOILayerPlugin({ map });
   }
 
   return sdk;
