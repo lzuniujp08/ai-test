@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>热力图插件示例</title>
+  <link rel="stylesheet" href="/shared.css" />
+  <script src="./lib/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app" class="heatmap-app">
+     <div class="control-panel admin" v-if="initialized">
+      <div class="panel-header">
+        <h1>AOI热力图插件</h1>
+        <p>HeatmapPlugin 功能演示</p>
+      </div>
+      <div class="panel-content">
+        <!-- 时间范围选择 -->
+        <div class="section">
+          <h4 class="section-title">时间范围</h4>
+          <select class="select-input" v-model="layerIndex" @change="onLayerIndexChange">
+            <option :value="1">7天热力图</option>
+            <option :value="2">15天热力图</option>
+            <option :value="3">30天热力图</option>
+            <option :value="4">90天热力图</option>
+          </select>
+        </div>
+
+        <!-- 收派件类型选择 -->
+        <div class="section">
+          <h4 class="section-title">业务类型</h4>
+          <select class="select-input" v-model="type" @change="onTypeChange">
+            <option :value="1">收件热力图</option>
+            <option :value="2">派件热力图</option>
+            <option :value="3">收派件热力图</option>
+          </select>
+        </div>
+
+        <!-- 网点编码输入 -->
+        <div class="section">
+          <h4 class="section-title">网点过滤</h4>
+          <input type="text" class="zone-input" v-model="zoneCode" @keypress="onZoneCodeKeypress"
+            placeholder="输入网点编码，如 755AC" />
+          <button class="btn btn-secondary" @click="clearZoneCode">清除网点过滤</button>
+        </div>
+
+        <!-- 透明度控制 -->
+        <div class="section">
+          <h4 class="section-title">图层透明度</h4>
+          <input type="range" min="0" max="1" step="0.1" v-model.number="opacity" @input="onOpacityChange"
+            style="width: 100%" />
+          <div style="font-size: 12px; color: #666; margin-top: 4px;">{{ opacity.toFixed(1) }}</div>
+        </div>
+
+        <!-- 图层控制 -->
+        <div class="section">
+          <h4 class="section-title">图层控制</h4>
+          <button class="btn btn-success" @click="showHeatmap">显示热力图</button>
+          <button class="btn btn-secondary" @click="hideHeatmap">隐藏热力图</button>
+          <button class="btn" @click="toggleHeatmap">切换显示/隐藏</button>
+          <button class="btn" style="background: #faad14" @click="refreshHeatmap">刷新热力图</button>
+        </div>
+
+        <!-- 信息查看 -->
+        <div class="section">
+          <h4 class="section-title">当前状态</h4>
+          <button class="btn" style="background: #722ed1" @click="showParams">查看当前参数</button>
+          <button class="btn" style="background: #eb2f96" @click="showWmsUrl">查看WMS URL</button>
+          <button class="btn" style="background: #13c2c2" @click="showLayerIndex">查看分片索引</button>
+        </div>
+
+        <!-- 城市定位 -->
+        <div class="section">
+          <h4 class="section-title">城市定位</h4>
+          <button v-for="city in cities" :key="city.code" class="btn" @click="switchCity(city)">
+            {{ city.name }}
+          </button>
+        </div>
+
+        <!-- 插件控制 -->
+        <div class="section">
+          <h4 class="section-title">插件控制</h4>
+          <button class="btn btn-danger" @click="destroyPlugin">销毁插件</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="map"></div>
+  </div>
+
+  <script type="module" src="/heatmap.js"></script>
+</body>
+
+</html>

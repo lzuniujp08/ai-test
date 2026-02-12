@@ -1,0 +1,11 @@
+{
+  "name": "sfmap-aoilayer-plugin",
+  "version": "0.1.0",
+  "main": "dist/aoilayer.umd.js",
+  "module": "dist/aoilayer.esm.js",
+  "dependencies": {
+    "@turf/turf": "^6.5.0",
+    "@terraformer/wkt": "^2.2.0",
+    "jsencrypt": "3.2.1"
+  }
+}

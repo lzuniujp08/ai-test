@@ -1,0 +1,10 @@
+{
+  "name": "sfmap-heatmap-plugin",
+  "version": "0.1.0",
+  "main": "dist/heatmap.umd.js",
+  "module": "dist/heatmap.esm.js",
+  "dependencies": {
+    "@turf/turf": "^6.5.0",
+    "crypto-js": "^4.1.1"
+  }
+}

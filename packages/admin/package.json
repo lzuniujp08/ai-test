@@ -1,0 +1,9 @@
+{
+  "name": "sfmap-admin-plugin",
+  "version": "0.1.0",
+  "main": "dist/admin.umd.js",
+  "module": "dist/admin.esm.js",
+  "dependencies": {
+    "sfmap-shared-plugin": "workspace:*"
+  }
+}

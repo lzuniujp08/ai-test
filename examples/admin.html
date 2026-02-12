@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>行政区划插件 - AdminPlugin 示例</title>
+  <link rel="stylesheet" href="/shared.css" />
+  <script src="./lib/vue.global.js"></script>
+</head>
+<body>
+  <div id="app" class="admin-app">
+    <!-- 控制面板 -->
+    <div class="control-panel admin" v-if="initialized">
+      <div class="panel-header">
+        <h1>行政区划插件</h1>
+        <p>AdminPlugin 功能演示</p>
+      </div>
+      <div class="panel-content">
+        <!-- 快速加载 -->
+        <div class="section">
+          <div class="section-title">快速加载示例</div>
+          <div class="btn-group">
+            <button class="btn btn-primary" @click="loadProvinces">加载省级</button>
+            <button class="btn btn-primary" @click="loadCities">加载市级</button>
+            <button class="btn btn-primary" @click="loadCustom">自定义编码</button>
+          </div>
+          <input type="text" class="adcode-input" v-model="customAdcodes"
+            placeholder="输入行政区划编码，多个用逗号分隔，如: 110000,310000,440300" />
+        </div>
+
+        <!-- 展示模式 -->
+        <div class="section">
+          <div class="section-title">展示模式切换</div>
+          <div class="mode-selector">
+            <button v-for="mode in displayModes" :key="mode.value" class="mode-btn"
+              :class="{ active: currentMode === mode.value }" @click="setMode(mode.value)">
+              {{ mode.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- 样式操作 -->
+        <div class="section">
+          <div class="section-title">样式与交互</div>
+          <div class="btn-group">
+            <button class="btn" @click="updateStyles">更新样式</button>
+            <button class="btn" @click="randomHighlight">随机高亮</button>
+            <button class="btn" @click="clearHighlight">清除高亮</button>
+          </div>
+          <div class="style-preview">
+            <div class="color-box" :style="{ background: currentStyle.fillColor }"></div>
+            <span>填充色</span>
+            <div class="color-box" :style="{ background: currentStyle.lineColor }"></div>
+            <span>边框色</span>
+          </div>
+        </div>
+
+        <!-- 数据管理 -->
+        <div class="section">
+          <div class="section-title">数据管理</div>
+          <div class="btn-group">
+            <button class="btn btn-danger" @click="clearAll">清除全部</button>
+            <button class="btn" @click="getStats">统计信息</button>
+          </div>
+          <div class="stats" v-if="showStats">
+            <div class="stat-item">
+              <div class="stat-value">{{ stats.loadedCount }}</div>
+              <div class="stat-label">已加载</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">{{ stats.highlightCount }}</div>
+              <div class="stat-label">高亮</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 信息显示 -->
+        <div class="section">
+          <div class="section-title">交互信息</div>
+          <div class="info-panel" :class="{ empty: !infoPanel.hasData }">
+            <template v-if="infoPanel.hasData">
+              <div v-for="(item, key) in infoPanel.data" :key="key" class="info-item">
+                <span class="info-label">{{ item.label }}:</span> {{ item.value }}
+              </div>
+            </template>
+            <template v-else>
+              点击地图上的行政区划查看详细信息
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="map"></div>
+  </div>
+
+  <script type="module" src="/admin.js"></script>
+</body>
+</html>

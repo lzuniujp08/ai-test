@@ -1,0 +1,590 @@
+/* ========================================
+   全局基础样式
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app,
+#map {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================
+   滚动条样式 (全局优化)
+   ======================================== */
+
+/* Webkit 浏览器滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 20px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+
+/* Firefox 滚动条 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+/* ========================================
+   控制面板通用样式
+   ======================================== */
+
+.control-panel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.control-panel.admin {
+  top: 20px;
+  left: 20px;
+  width: 600px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.control-panel.aoi {
+  width: 220px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.control-panel.service {
+  width: 180px;
+}
+
+.control-panel.heatmap {
+  width: 240px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* ========================================
+   面板标题样式
+   ======================================== */
+
+.panel-header {
+  border-bottom: 2px solid #1890ff;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.panel-header h1 {
+  font-size: 18px;
+  color: #1890ff;
+  margin-bottom: 5px;
+}
+
+.panel-header h3,
+.panel-title {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  color: #1890ff;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #1890ff;
+}
+
+.panel-header p {
+  font-size: 12px;
+  color: #999;
+}
+
+.panel-content {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+/* ========================================
+   区块样式
+   ======================================== */
+
+.section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.section:not(.has-bg) {
+  background: transparent;
+  padding: 0;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-title::before {
+  content: '';
+  width: 4px;
+  height: 16px;
+  background: #1890ff;
+  border-radius: 2px;
+}
+
+.section:not(.has-bg) .section-title {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.section:not(.has-bg) .section-title::before {
+  display: none;
+}
+
+/* ========================================
+   按钮通用样式
+   ======================================== */
+
+.btn {
+  padding: 8px 16px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  border-color: #1890ff;
+  color: #1890ff;
+}
+
+.control-panel.aoi .btn,
+.control-panel.service .btn,
+.control-panel.heatmap .btn {
+  width: 100%;
+  padding: 8px 12px;
+  margin: 5px 0;
+  background: #1890ff;
+  color: white;
+  border: none;
+}
+
+.control-panel.aoi .btn:hover,
+.control-panel.service .btn:hover,
+.control-panel.heatmap .btn:hover {
+  background: #40a9ff;
+}
+
+/* 按钮颜色主题 */
+.btn-primary {
+  background: #1890ff;
+  color: #fff;
+  border-color: #1890ff;
+}
+
+.btn-primary:hover {
+  background: #40a9ff;
+  border-color: #40a9ff;
+}
+
+.btn-success {
+  background: #52c41a;
+  color: white;
+  border-color: #52c41a;
+}
+
+.btn-success:hover {
+  background: #73d13d;
+  border-color: #73d13d;
+}
+
+.btn-danger {
+  background: #ff4d4f;
+  color: white;
+  border-color: #ff4d4f;
+}
+
+.btn-danger:hover {
+  background: #ff7875;
+  border-color: #ff7875;
+}
+
+.btn-warning {
+  background: #faad14;
+  color: white;
+  border-color: #faad14;
+}
+
+.btn-warning:hover {
+  background: #ffc53d;
+  border-color: #ffc53d;
+}
+
+.btn-info {
+  background: #13c2c2;
+  color: white;
+  border-color: #13c2c2;
+}
+
+.btn-info:hover {
+  background: #36cfc9;
+  border-color: #36cfc9;
+}
+
+.btn-secondary {
+  background: #8c8c8c;
+  color: white;
+  border-color: #8c8c8c;
+}
+
+.btn-secondary:hover {
+  background: #a0a0a0;
+  border-color: #a0a0a0;
+}
+
+/* ========================================
+   按钮组样式
+   ======================================== */
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ========================================
+   模式选择器样式
+   ======================================== */
+
+.mode-selector {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.mode-btn.active {
+  background: #1890ff;
+  color: #fff;
+  border-color: #1890ff;
+}
+
+/* ========================================
+   输入框通用样式
+   ======================================== */
+
+input[type="text"],
+select,
+.adcode-input,
+.zone-input,
+.search-input,
+.select-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 13px;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+select:focus,
+.adcode-input:focus,
+.zone-input:focus,
+.search-input:focus,
+.select-input:focus {
+  outline: none;
+  border-color: #1890ff;
+}
+
+.adcode-input {
+  margin: 10px 0;
+}
+
+.zone-input,
+.select-input {
+  padding: 8px 12px;
+  margin: 5px 0;
+}
+
+.search-input {
+  padding: 8px 12px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   信息面板样式
+   ======================================== */
+
+.info-panel {
+  margin-top: 15px;
+  padding: 12px;
+  background: #e6f7ff;
+  border: 1px solid #91d5ff;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #096dd9;
+  min-height: 80px;
+}
+
+.info-panel.empty {
+  background: #f5f5f5;
+  border-color: #d9d9d9;
+  color: #999;
+}
+
+.info-item {
+  margin-bottom: 5px;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #333;
+}
+
+/* ========================================
+   样式预览样式
+   ======================================== */
+
+.style-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.color-box {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+}
+
+/* ========================================
+   统计面板样式
+   ======================================== */
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: #fff;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1890ff;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #999;
+}
+
+/* ========================================
+   搜索框样式
+   ======================================== */
+
+.search-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 320px;
+}
+
+.poi-result-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 0 0 4px 4px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-top: 5px;
+}
+
+.poi-result-list.show {
+  display: block;
+}
+
+.poi-item {
+  padding: 10px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.2s;
+}
+
+.poi-item:hover {
+  background: #f5f5f5;
+}
+
+.poi-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #262626;
+  margin-bottom: 4px;
+}
+
+.poi-address {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+/* ========================================
+   输出日志面板样式
+   ======================================== */
+
+#output {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  max-height: 200px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.8);
+  color: #0f0;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  z-index: 1000;
+}
+
+#output > div {
+  margin: 2px 0;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#output > div:last-child {
+  border-bottom: none;
+}
+
+/* ========================================
+   通用工具类
+   ======================================== */
+
+/* 隐藏滚动条但保持滚动功能 */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* 平滑滚动 */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* 文本省略 */
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Flex 居中 */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   响应式布局
+   ======================================== */
+
+@media (max-width: 768px) {
+  .control-panel {
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    border-radius: 8px 8px 0 0;
+    max-height: 50vh;
+  }
+
+  .search-box {
+    width: 280px !important;
+  }
+
+  #output {
+    left: 10px;
+    right: 10px;
+    bottom: 250px;
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "sfmap-service-plugin",
+  "version": "0.1.0",
+  "main": "dist/service.umd.js",
+  "module": "dist/service.esm.js",
+  "dependencies": {
+    "sfmap-shared-plugin": "workspace:*"
+  }
+}

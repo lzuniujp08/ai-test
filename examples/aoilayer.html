@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AOI 图层插件示例</title>
+  <link rel="stylesheet" href="/shared.css" />
+  <script src="./lib/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app" class="aoi-app">
+    <div class="control-panel admin" v-if="initialized">
+       <div class="panel-header">
+        <h1>AOI图层示例</h1>
+        <p>AOILayerPlugin 功能演示</p>
+      </div>
+      <div class="panel-content">
+        <!-- 基本操作 -->
+        <div class="section">
+          <h4 class="section-title">基本操作</h4>
+          <button class="btn btn-secondary" @click="hideLayer">隐藏图层</button>
+          <button class="btn btn-success" @click="showLayer">显示图层</button>
+        </div>
+
+        <!-- 定位操作 -->
+        <div class="section">
+          <h4 class="section-title">定位操作</h4>
+          <button class="btn" @click="fitToCity">定位到城市</button>
+          <button class="btn" style="background: #722ed1" @click="fitToZno">定位到网点</button>
+        </div>
+
+        <!-- 合并操作 -->
+        <div class="section">
+          <h4 class="section-title">合并AOI</h4>
+          <button class="btn" style="background: #fa8c16" @click="mergeByAoiIds">根据AOIID合并</button>
+          <button class="btn" style="background: #eb2f96" @click="mergeByAoiCodes">根据AOICODE合并</button>
+          <button class="btn" style="background: #13c2c2" @click="mergeByZnoCodes">根据网点合并</button>
+        </div>
+
+        <!-- 吸附操作 -->
+        <div class="section">
+          <h4 class="section-title">多边形吸附</h4>
+          <button class="btn btn-danger" @click="snapToAoi">吸附到AOI</button>
+        </div>
+
+        <!-- 拉框选择 -->
+        <div class="section">
+          <h4 class="section-title">拉框选择</h4>
+          <button class="btn" style="background: #faad14" @click="beginDrawBox">开始拉框</button>
+        </div>
+
+        <!-- 高亮操作 -->
+        <div class="section">
+          <h4 class="section-title">高亮操作</h4>
+          <button class="btn" style="background: #fa541c" @click="highlightByCodes">高亮指定AOI</button>
+          <button class="btn btn-secondary" @click="clearHighlight">清除高亮</button>
+        </div>
+
+        <!-- 清除操作 -->
+        <div class="section">
+          <h4 class="section-title">清除操作</h4>
+          <button class="btn btn-danger" @click="clearVector">清除矢量数据</button>
+          <button class="btn btn-danger" @click="removeLayer">移除图层</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="map"></div>
+  </div>
+
+  <script type="module" src="/aoilayer.js"></script>
+</body>
+
+</html>
